@@ -14,7 +14,6 @@
                     var palinemailstwitter = $('#palinemails-twitter');
                     for (i in json.results) {
                         palinemailstwitter.append("<p>@" + json.results[i].from_user + ':&nbsp;' + json.results[i].text + '</p>');
-                        console.log("@%s: %s", json.results[i].from_user, json.results[i].text);
                     }
                 }
             );
