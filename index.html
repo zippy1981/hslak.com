@@ -6,6 +6,53 @@
     <script type="text/javascript">
         google.load("jquery", "1.6");
         google.setOnLoadCallback(function () {
+            Date.prototype.getISODateTime = function () {
+                function pad(n) { return n < 10 ? '0' + n : n }
+                return this.getUTCFullYear() + '-'
+                    + pad(this.getUTCMonth() + 1) + '-'
+                    + pad(this.getUTCDate()) + 'T'
+                    + pad(this.getUTCHours()) + ':'
+                    + pad(this.getUTCMinutes()) + ':'
+                    + pad(this.getUTCSeconds()) + 'Z'
+            }
+
+            Date.prototype.getDayAbbrev = function () {
+                switch (this.getDay()) {
+                    case 0: return 'Sun';
+                    case 1: return 'Mon';
+                    case 2: return 'Tues';
+                    case 3: return 'Wed';
+                    case 4: return 'Thurs';
+                    case 5: return 'Fri';
+                    case 6: return 'Sat';
+                }
+            }
+
+            Date.prototype.getMonthAbbrev = function () {
+                switch (this.getDay()) {
+                    case 0: return 'Jan';
+                    case 1: return 'Feb';
+                    case 2: return 'Mar';
+                    case 3: return 'Apr';
+                    case 4: return 'May';
+                    case 5: return 'Jun';
+                    case 6: return 'Jul';
+                    case 7: return 'Aug';
+                    case 8: return 'Sep';
+                    case 9: return 'Oct';
+                    case 10: return 'Nov';
+                    case 11: return 'Dec';
+                }
+            }
+
+            Date.prototype.getDateShort = function () {
+                return this.getDayAbbrev() + " " + this.getMonthAbbrev() + " " + this.getDate() + " " + this.getFullYear();
+            }
+
+            Date.prototype.getDateTimeShort = function () {
+                return this.getDateShort() + " " + this.getHours() + ":" + this.getMinutes();
+            }
+
             var jsonUrl = 'http://search.twitter.com/search.json?q=%23palinemails&callback=?';
             $.getJSON(
                 jsonUrl,
@@ -13,7 +60,13 @@
                 function (json) {
                     var palinemailstwitter = $('#palinemails-twitter');
                     for (i in json.results) {
-                        palinemailstwitter.append("<p>@" + json.results[i].from_user + ':&nbsp;' + json.results[i].text + '</p>');
+                        var tweet = json.results[i];
+                        var tweetDate = new Date(tweet.created_at);
+                        var tweetHtml =
+                            "<p><a href='http://www.twitter.com/" + tweet.from_user + "' target='_blank'>@" +
+                            tweet.from_user + '</a>:&nbsp;' +
+                            tweet.text + ' at ' + tweetDate.getDateTimeShort() + '</p>';
+                        palinemailstwitter.append(tweetHtml);
                     }
                 }
             );
@@ -52,7 +105,7 @@
     <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
     
     <div id="palinemails-twitter">
-    <h2>Twitter messages with the #palinemails hashtag</h2>
+    <h2>Twitter updates with the <a href='http://search.twitter.com/search?q=%23palinemails'>#palinemails</a> hashtag</h2>
     </div>
 </body>
 </html>
