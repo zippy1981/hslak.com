@@ -1,0 +1,19 @@
+﻿body 
+{
+    background-color: #AAAAAA;
+    color: #000000;
+    font-family: Sans-Serif;
+}
+#palinemails-twitter p 
+{
+    font-family: serif,Times New Roman;
+}
+#palinemails-twitter 
+{
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px dashed #55FF55;
+    width: 800px;
+    max-width: 90%;
+    padding: 15px;
+}
