@@ -36,17 +36,21 @@
                 jsonUrl,
                 null,
                 function (json) {
-                    var palinemailstwitter = $('#palinemails-twitter');
-                    for (i in json.results) {
+                    var palinemailstwitter = $('#palinemails-twitter-tweets');
+                    for (var i in json.results) {
                         var tweet = json.results[i];
                         var tweetDate = new Date(tweet.created_at);
                         var tweetHtml =
                             "<p><a href='http://www.twitter.com/" + tweet.from_user + "'>@" +
                             tweet.from_user + '</a>:&nbsp;' +
-                            twttr.txt.autoLink(tweet.text) + 
+                            twttr.txt.autoLink(tweet.text) +
                             ' at ' + tweetDate.getDateTimeShort() + '</p>';
                         palinemailstwitter.append(tweetHtml);
                     }
+                    $('#palinemails-twitter-loading').fadeOut('slow', function () {
+                        palinemailstwitter.slideDown(1000);
+                        $(this).remove();
+                    });
                 }
             );
         });
@@ -78,13 +82,25 @@
         google_ad_slot = "9418709371";
         google_ad_width = 300;
         google_ad_height = 250;
-    //-->
     </script>
     
     <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-    
-    <div id="palinemails-twitter">
-    <h2>Twitter updates with the <a href='http://search.twitter.com/search?q=%23palinemails'>#palinemails</a> hashtag</h2>
+    <div class="contentArea">
+        <div class="contentFrame contentFrame-left">
+            <div id="palinemails-twitter" class="contentFrame-inner contentFrame-inner-left">
+                <h2>Twitter updates with the <a href='http://search.twitter.com/search?q=%23palinemails'>#palinemails</a> hashtag</h2>
+                <div id="palinemails-twitter-loading">LOADING&nbsp;.&nbsp;.&nbsp;<blink>.</blink></div>
+                <div id="palinemails-twitter-tweets" style="display: none"></div>
+            </div>
+        </div>
+        <div class="contentFrame contentFrame-right">
+            <div class="contentFrame-inner contentFrame-inner-right">
+                <h2>Open Source</h2>
+                <p>This pages content is released under the Apache License and is available on 
+                <a href="http://www.github.com">github</a>. It is released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.
+                <a href="https://github.com/zippy1981/hslak.com">Click here</a> to go to the hslak.com repository.</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

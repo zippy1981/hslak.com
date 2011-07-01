@@ -4,16 +4,59 @@
     color: #000000;
     font-family: Sans-Serif;
 }
-#palinemails-twitter p 
-{
-    font-family: serif,Times New Roman;
+div.contentArea {
+    width: 100%;
+    position: relative;
+    margin: 0;
+    border: 0;
+    padding: 0;
 }
-#palinemails-twitter 
+div.contentFrame-left { left: 0; }
+div.contentFrame-right { right: 0; }
+div.contentFrame 
 {
-    margin-left: auto;
-    margin-right: auto;
-    border: 3px dashed #55FF55;
+    position: absolute;
+    width: 50%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+div.contentFrame-inner-left { right: 3px; }
+div.contentFrame-inner-right { left: 3px; }
+div.contentFrame-inner
+{
+    position: absolute;
+    border: 3px dotted #55FF55;
     width: 800px;
     max-width: 90%;
     padding: 15px;
+    behavior: url(PIE.htc);
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+    
+}
+
+#palinemails-twitter-tweets p 
+{
+    font-family: serif,Times New Roman;
+}
+#palinemails-twitter-loading {
+    text-align: center;
+    font-weight: bolder;
+}
+
+/*
+ * Yes I put a blink tag in there
+ * You can too http://mir.aculo.us/2010/07/21/bringing-back-the-blink-tag-to-html5/
+ */
+@-webkit-keyframes blink {
+  0%     { opacity: 0 } 50% { opacity: 0 }
+  50.01% { opacity: 1 } 100% { opacity: 1 }
+}
+
+blink {
+  -webkit-animation: blink 0.7s infinite linear alternate;
+  -webkit-font-smoothing: antialiased;
 }
