@@ -21,11 +21,11 @@ div.contentFrame
     border: 0;
     padding: 0;
 }
-div.contentFrame-inner-left { right: 3px; }
-div.contentFrame-inner-right { left: 3px; }
+div.contentFrame-inner-left { float: right; }
+div.contentFrame-inner-right { float: left; }
 div.contentFrame-inner
 {
-    position: absolute;
+    position: relative;
     border: 3px dotted #55FF55;
     width: 800px;
     max-width: 90%;
@@ -35,7 +35,7 @@ div.contentFrame-inner
     -webkit-border-radius: 20px;
     -khtml-border-radius: 20px;
     border-radius: 20px;
-    
+    margin: 5px;
 }
 
 #palinemails-twitter-tweets p 
